@@ -1,5 +1,8 @@
 """Computation of weighted average of squares."""
 
+import argparse
+# command line parameter analysis function
+# input in terminal, python automatically record
 
 def average_of_squares(list_of_numbers, list_of_weights=None):
     """ Return the weighted average of a list of values.
@@ -51,12 +54,42 @@ def convert_numbers(list_of_strings):
 
 
 if __name__ == "__main__":
-    numbers_strings = ["1","2","4"]
-    weight_strings = ["1","1","1"]        
+    parser = argparse.ArgumentParser(
+    # create a parameter analysis 解析器 argument parser
+        description="Compute the weighted average of squares of numbers."
+    )
+
+    parser.add_argument(
+        "numbers",  # parameter name
+        type=float, # change input to float type
+        nargs="+",  # one or more numbers
+        help="Numbers to calculate with",
+
+    )
+
+    args = parser.parse_args() # read and analysis temrinal parameter that input
+
+    numbers = args.numbers
+
+    weights = None
+
+    results = average_of_squares(numbers, weights)  
+    print(results)
+
+
+
+
+
+
+
+    # original code for fixed number and weights
+    # numbers_strings = ["1","2","4"]
+    # weight_strings = ["1","1","1"]        
     
-    numbers = convert_numbers(numbers_strings)
-    weights = convert_numbers(weight_strings)
+    # numbers = convert_numbers(numbers_strings)
+    # weights = convert_numbers(weight_strings)
     
-    result = average_of_squares(numbers, weights)
+    # result = average_of_squares(numbers, weights)
+    # calculate square result
     
-    print(result)
+    # print(result)
